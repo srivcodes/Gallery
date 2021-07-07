@@ -17,8 +17,37 @@ function Gallery (gallery){
         }
         modal.classList.add('open');
 
+
+        window.addEventListener("keyup" , handleKeyUp);
+        nextButton.addEventListener("click", handleNextButton);
+        prevButton.addEventListener("click", handlePrevButton);
     }
 
+    function closeModal(){
+        modal.classList.remove('open');
+        window.removeEventListener("keyup" , handleKeyUp);
+        nextButton.removeEventListener("click", handleNextButton);
+        prevButton.removeEventListener("click", handlePrevButton);
+    }
+
+    function handleClickOutside(e){
+        if(e.target === e.currentTarget) {
+            closeModal();
+        }
+    }
+
+    function handleNextButton(){
+        showImage(currentImage.nextElementSibling || gallery.firstElementChild);
+    }
+    function handlePrevButton(){
+        showImage(currentImage.previousElementSibling || gallery.lastElementChild);
+    }
+
+    function handleKeyUp(e){
+        if(e.key === "Escape") return closeModal();
+        if(e.key === "ArrowRight") return handleNextButton();
+        if(e.key === "ArroeLeft") return handlePrevButton();
+    }
     function showImage (el){
         if(!el){
             console.info("No Image to show");
@@ -29,6 +58,7 @@ function Gallery (gallery){
         modal.querySelector('h2').textContent = el.title;
         modal.querySelector('figure p').textContent = el.dataset.description;
         currentImage = el;
+        openModal();
     }
 
     // function handleImageClick(e){
@@ -40,6 +70,9 @@ function Gallery (gallery){
             showImage(e.currentTarget);
         });
       });
+
+    modal.addEventListener("click", handleClickOutside);
+
 
 }
 
