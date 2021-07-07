@@ -7,6 +7,7 @@ function Gallery (gallery){
     const modal = document.querySelector(".modal");
     const prevButton = document.querySelector(".prev");
     const nextButton = document.querySelector(".next");
+    let currentImage;
 
     function showImage (el){
         if(!el){
@@ -15,6 +16,9 @@ function Gallery (gallery){
         }
         console.log(el);
         modal.querySelector('img').src = el.src;
+        modal.querySelector('h2').textContent = el.title;
+        modal.querySelector('figure p').textContent = el.dataset.description;
+        currentImage = el;
     }
 
     // function handleImageClick(e){
