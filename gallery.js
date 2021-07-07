@@ -9,6 +9,16 @@ function Gallery (gallery){
     const nextButton = document.querySelector(".next");
     let currentImage;
 
+    function openModal(){
+        console.info("opening modal");
+        if(modal.matches("open")){
+            console.log("modal already open");
+            return;
+        }
+        modal.classList.add('open');
+
+    }
+
     function showImage (el){
         if(!el){
             console.info("No Image to show");
