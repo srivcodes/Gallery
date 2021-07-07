@@ -14,20 +14,16 @@ function Gallery (gallery){
             return;
         }
         console.log(el);
+        modal.querySelector('img').src = el.src;
     }
 
-    function handleImageClick(e){
-        showImage(e.currentTarget);
-    }
+    // function handleImageClick(e){
+    //     showImage(e.currentTarget);
+    // }
 
     images.forEach(image => {
-        // attach an event listener for each image
-        image.addEventListener('click', e => {
-          // when that is keyup'd, check if it was enter
-        //   if (e.key === 'Enter') {
-            // if it was, show that image
+        image.addEventListener('click', e => {   
             showImage(e.currentTarget);
-        //   }
         });
       });
 
